@@ -1,0 +1,130 @@
+:root {
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #502c30;
+  background: #faf7f6;
+  font-synthesis: none;
+  --gap: clamp(2px, .55vmin, 7px);
+  --name-size: clamp(8px, min(1.3vw, 2.1vh), 21px);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { width: 100%; height: 100%; margin: 0; }
+body { overflow: hidden; }
+
+main {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  padding: clamp(6px, 1.8vmin, 22px);
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: clamp(4px, 1.1vmin, 13px);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px clamp(10px, 2vw, 25px);
+  margin: 0;
+  color: #795e60;
+  font-size: clamp(7px, 1.4vmin, 12px);
+  line-height: 1.4;
+}
+
+.legend > span { display: flex; align-items: center; gap: 5px; }
+.swatch { width: 1em; height: 1em; flex-shrink: 0; border: 1px solid #7b172b12; }
+
+.map {
+  gap: var(--gap);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--gap);
+  border: 1px solid #e2e5df;
+  background: #fff;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, .65vmin, 8px);
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(3px, 1vmin, 14px);
+  border: 1px solid #7b172b12;
+  text-align: center;
+  font-size: var(--name-size);
+  font-weight: 550;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.tile strong { max-width: 100%; font-weight: 600; }
+
+.level-s, .tile.level-s { background: #8f1532; color: #fff7f8; }
+.level-t, .tile.level-t { background: #bb4053; color: #fff8f8; }
+.level-a, .tile.level-a { background: #db8490; color: #541827; }
+.level-b, .tile.level-b { background: #f0b1ba; color: #671f31; }
+.level-c, .tile.level-c { background: #fbe5e8; color: #844452; }
+.swatch.is-complete, .tile.is-complete { background: #26734d; color: #f3fff7; }
+.breadcrumbs h1.is-complete { color: #26734d; }
+
+.tile-link { position: relative; text-decoration: none; }
+.tile-link:hover { box-shadow: inset 0 0 0 2px #ffffff85; }
+.topic-tile:focus-visible { outline: 3px solid #502c30; outline-offset: -4px; }
+.drill-arrow { position: absolute; top: .6em; right: .7em; font-size: .65em; opacity: .8; }
+
+.breadcrumbs {
+  min-width: 0;
+  overflow-x: auto;
+  padding: 4px 2px 7px;
+  scrollbar-width: thin;
+  font-size: clamp(12px, 1.8vmin, 18px);
+  line-height: 1.6;
+}
+.breadcrumbs ol { display: flex; align-items: baseline; width: max-content; margin: 0; padding: 0; list-style: none; }
+.breadcrumb-item { display: flex; align-items: baseline; flex-shrink: 0; white-space: nowrap; }
+.breadcrumb-separator { margin: 0 clamp(8px, 1.2vw, 16px); color: #b69b9e; user-select: none; }
+.breadcrumb-link { color: #846368; text-decoration: none; border-radius: 2px; }
+.breadcrumb-link:hover { color: #8f1532; text-decoration: underline; text-underline-offset: 4px; }
+.breadcrumb-link:focus-visible { outline: 2px solid #8f1532; outline-offset: 2px; }
+.breadcrumbs h1 { margin: 0; color: #502c30; font-size: inherit; font-weight: 650; line-height: inherit; }
+.breadcrumbs h1:focus { outline: none; }
+
+.map.topic-map { display: block; position: relative; }
+.topic-map .topic-tile { position: absolute; padding: clamp(4px, .8vmin, 12px); }
+.topic-copy { display: flex; justify-content: center; width: 100%; flex-shrink: 0; }
+.topic-copy .topic-name { font-size: var(--topic-name-size, 18px); line-height: 1.25; }
+.topic-tile .drill-arrow { font-size: clamp(8px, 1.4vmin, 14px); top: 3px; right: 5px; }
+.topic-empty { margin: 20px; font-size: 14px; }
+
+.topic-tooltip {
+  position: fixed;
+  z-index: 100;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 20px));
+  padding: 12px 15px;
+  border: 1px solid #e8d9dc;
+  border-radius: 8px;
+  background: #fffdfd;
+  color: #502c30;
+  box-shadow: 0 6px 24px #502c3024;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.tooltip-title { display: block; font-size: 14px; font-weight: 650; }
+.tooltip-description { margin: 5px 0 0; color: #795e60; white-space: pre-line; }
+
+/* Tile placement adapts to the available viewport in topic.js. */
+@media (max-width: 600px) and (orientation: portrait) {
+  :root {
+    --name-size: clamp(7px, min(2.8vw, 1.65vh), 15px);
+  }
+
+  .legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topic-map .topic-tile { padding: 3px; }
+}

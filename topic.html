@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一航同学的学习地图</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="map-data.js" defer></script>
+  <script src="topic.js" defer></script>
+</head>
+<body data-node="framework">
+  <main>
+    <nav class="breadcrumbs" id="breadcrumbs" aria-label="面包屑导航">
+      <ol id="breadcrumb-list">
+        <li class="breadcrumb-item"><h1 id="topic-title" tabindex="-1">正在加载知识地图…</h1></li>
+      </ol>
+    </nav>
+    <div class="legend" id="map-legend" aria-label="等级与完成状态说明"></div>
+    <div class="map topic-map" id="topic-map" aria-label="知识地图" aria-live="polite">
+      <noscript>请启用浏览器 JavaScript 以展示知识地图。</noscript>
+    </div>
+  </main>
+</body>
+</html>
